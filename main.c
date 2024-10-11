@@ -1,15 +1,56 @@
-#include <unistd.h>
+#include <stdio.h>
 
-int	main(void)
-{
-	int	size;	//объявляем переменную, в которой запишем размер строки
-	char	string[] = "Hello, World!\n";  //создаём пустой символьный массив и сразу записыаем в него строку
+#define ARRAY_SIZE 10
 
-	size = 0; //начальный размер нулевой
-	while (string[size] != '\0') //цикл прохода по всем элементам массива до тех пор, пока не достигнем нуль-терминатора
-	{
-		size++; //каждый раз увеличиваем размер на 1
-	}
-	write(1, string, size); // выводим результат
-	return (0);
+// Функция для чтения массива
+int read_array(int *arr) {
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        if (scanf("%d", &arr[i]) != 1) {
+            return 0; // Ошибка ввода
+        }
+    }
+    return 1; // Успешное чтение
+}
+
+// Функция для сортировки массива (алгоритм пузырька)
+void bubble_sort(int *arr) {
+    for (int i = 0; i < ARRAY_SIZE - 1; i++) {
+        for (int j = 0; j < ARRAY_SIZE - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Меняем местами элементы
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// Функция для вывода массива
+void print_array(const int *arr) {
+    for (int i = 0; i < ARRAY_SIZE; i++) {
+        printf("%d", arr[i]);
+        if (i < ARRAY_SIZE - 1) {
+            printf(" ");
+        }
+    }
+    printf("\n");
+}
+
+int main() {
+    int arr[ARRAY_SIZE];
+
+    // Чтение массива
+    if (!read_array(arr)) {
+        printf("n/a\n");
+        return 1; // Возврат ошибки
+    }
+
+    // Сортировка массива
+    bubble_sort(arr);
+
+    // Вывод отсортированного массива
+    print_array(arr);
+
+    return 0;
 }
