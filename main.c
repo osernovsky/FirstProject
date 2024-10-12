@@ -1,3 +1,5 @@
+// Test 
+
 #include <stdio.h>
 
 #define ARRAY_SIZE 10 // размер массива
