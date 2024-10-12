@@ -1,12 +1,11 @@
-// editing
-
 #include <stdio.h>
 
-#define ARRAY_SIZE 10
+#define ARRAY_SIZE 10 // размер массива
 
 // Функция для чтения массива
-int read_array(int *arr) {
+int input_array(int *arr) {
     for (int i = 0; i < ARRAY_SIZE; i++) {
+        printf("Введите %d число:",i+1);
         if (scanf("%d", &arr[i]) != 1) {
             return 0; // Ошибка ввода
         }
@@ -30,21 +29,24 @@ void bubble_sort(int *arr) {
 
 // Функция для вывода массива
 void print_array(const int *arr) {
+    printf("\033[33mЦифры по возрастанию: ");
     for (int i = 0; i < ARRAY_SIZE; i++) {
         printf("%d", arr[i]);
         if (i < ARRAY_SIZE - 1) {
-            printf(" ");
+            printf(", ");
         }
     }
-    printf("\n");
+    printf("\n\n");
 }
 
 int main() {
     int arr[ARRAY_SIZE];
 
+    system("clear");
+
     // Чтение массива
-    if (!read_array(arr)) {
-        printf("n/a\n");
+    if (!input_array(arr)) {
+        printf("\n\033[31mОшибка. Допустимы только цифровые значения!\n\n");
         return 1; // Возврат ошибки
     }
 
