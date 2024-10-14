@@ -156,7 +156,7 @@ void main(void){
             break;
         }
 
-        // Проверка на ничью
+        // Проверка на ничью. Хотя можно просто считать количество ходов BSIZE*2
         if (CheckDraw(BSIZE, board)){
             system("clear");
             BoardPrint(BSIZE, board);
